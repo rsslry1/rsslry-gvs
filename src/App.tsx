@@ -37,6 +37,41 @@ function App() {
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
   const [dragActive, setDragActive] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
+  const [helpStepIndex, setHelpStepIndex] = useState(0);
+
+  const helpSteps = [
+    {
+      title: "Prepare your spreadsheet",
+      description:
+        "Make sure the file includes these columns: No., Last Name, First Name, Prelim, Midterm, Final Term, and Final Grade.",
+    },
+    {
+      title: "Upload the file",
+      description:
+        "Use the upload area to drag and drop or choose an XLSX, XLS, or CSV file. The preview table will show the imported rows.",
+    },
+    {
+      title: "Choose the grading method",
+      description:
+        "Select Percentage-Based to set weights, or Custom Formula to enter your own expression using Prelim, Midterm, FinalTerm, and FinalGrade.",
+    },
+    {
+      title: "Set rounding and tolerance",
+      description:
+        "Pick how computed grades should be rounded, then define the allowed difference between the uploaded grade and the computed grade.",
+    },
+    {
+      title: "Run verification",
+      description:
+        "Click Run Verification to calculate each student’s expected final grade and compare it with the recorded value.",
+    },
+    {
+      title: "Review and export results",
+      description:
+        "Use search, sorting, and filters to inspect records, then download the corrected sheet or the error report.",
+    },
+  ];
 
   useEffect(() => {
     sessionStorage.setItem(SESSION_KEY, JSON.stringify(settings));
@@ -172,6 +207,23 @@ function App() {
                   Upload a spreadsheet, configure your grading logic, and audit every final grade
                   in one local, browser-based workspace.
                 </p>
+
+                <p className="mt-4 max-w-2xl text-sm leading-7 text-[#625a51] dark:text-[#c9c1b6]">
+                  Want to know how to use this? Click the Help button below for a step-by-step guide.
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setHelpStepIndex(0);
+                      setIsHelpOpen(true);
+                    }}
+                    className="rounded-full border border-black/10 bg-white/70 px-4 py-2 text-sm text-[#2a2927] transition hover:bg-white dark:border-white/10 dark:bg-white/10 dark:text-[#f3ede4] dark:hover:bg-white/15"
+                  >
+                    CLICK ME FOR HELP
+                  </button>
+                </div>
               </div>
               <div className="rounded-[2rem] border border-black/8 bg-[linear-gradient(135deg,_rgba(255,244,214,0.95),_rgba(255,255,255,0.55))] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:border-white/10 dark:bg-[linear-gradient(135deg,_rgba(51,48,44,0.95),_rgba(28,28,31,0.88))]">
                 <div className="flex items-start justify-between gap-4">
@@ -195,7 +247,9 @@ function App() {
                   </button>
                 </div>
 
-                <div className="mt-6 grid grid-cols-2 gap-3">
+                
+
+                <div className="mt-4 grid grid-cols-2 gap-3">
                   <HeroMetric label="Total Records" value={summary.total} />
                   <HeroMetric label="Accuracy" value={`${summary.accuracy}%`} />
                   <HeroMetric label="Incorrect" value={summary.incorrect} />
@@ -632,6 +686,89 @@ function App() {
           </main>
         </div>
       </div>
+
+      {isHelpOpen ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/35 px-4 backdrop-blur-sm">
+          <div className="glass-panel w-full max-w-3xl rounded-[2rem] p-6 sm:p-7">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="section-label">Help Guide</p>
+                <h2 className="section-title">How to use the system</h2>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsHelpOpen(false)}
+                className="rounded-full border border-black/10 bg-white/70 px-4 py-2 text-sm text-[#2a2927] transition hover:bg-white dark:border-white/10 dark:bg-white/10 dark:text-[#f3ede4] dark:hover:bg-white/15"
+              >
+                Close
+              </button>
+            </div>
+
+            <div className="mt-6">
+              <div className="overflow-hidden rounded-[1.75rem] border border-black/8 bg-white/35 dark:border-white/10 dark:bg-white/5">
+                <div
+                  className="flex transition-transform duration-300 ease-out"
+                  style={{ transform: `translateX(-${helpStepIndex * 100}%)` }}
+                >
+                  {helpSteps.map((step, index) => (
+                    <div key={step.title} className="w-full shrink-0 p-5 sm:p-6">
+                      <HelpStep
+                        number={String(index + 1)}
+                        title={step.title}
+                        description={step.description}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-5 flex items-center justify-between gap-4">
+                <button
+                  type="button"
+                  onClick={() => setHelpStepIndex((current) => Math.max(0, current - 1))}
+                  disabled={helpStepIndex === 0}
+                  className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 text-sm text-[#2a2927] transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-40 dark:border-white/10 dark:bg-white/10 dark:text-[#f3ede4] dark:hover:bg-white/15"
+                >
+                  <span aria-hidden="true">←</span>
+                  Previous
+                </button>
+
+                <div className="flex items-center gap-2">
+                  {helpSteps.map((step, index) => (
+                    <button
+                      key={step.title}
+                      type="button"
+                      aria-label={`Go to step ${index + 1}`}
+                      onClick={() => setHelpStepIndex(index)}
+                      className={`h-2.5 rounded-full transition ${
+                        helpStepIndex === index
+                          ? "w-8 bg-[#2d2a29] dark:bg-[#f1ca57]"
+                          : "w-2.5 bg-black/15 dark:bg-white/20"
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    setHelpStepIndex((current) => Math.min(helpSteps.length - 1, current + 1))
+                  }
+                  disabled={helpStepIndex === helpSteps.length - 1}
+                  className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 text-sm text-[#2a2927] transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-40 dark:border-white/10 dark:bg-white/10 dark:text-[#f3ede4] dark:hover:bg-white/15"
+                >
+                  Next
+                  <span aria-hidden="true">→</span>
+                </button>
+              </div>
+
+              <p className="mt-4 text-center text-sm text-[#6b6257] dark:text-[#cfc6ba]">
+                Step {helpStepIndex + 1} of {helpSteps.length}
+              </p>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -703,6 +840,35 @@ function HeaderButton({ label, onClick }: { label: string; onClick: () => void }
         {label}
       </button>
     </th>
+  );
+}
+
+function HelpStep({
+  number,
+  title,
+  description,
+}: {
+  number: string;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="flex min-h-[240px] flex-col justify-between rounded-[1.5rem] border border-black/8 bg-white/40 p-5 dark:border-white/10 dark:bg-white/5">
+      <div className="flex gap-4">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#2d2a29] text-sm font-semibold text-white dark:bg-[#f1ca57] dark:text-[#171614]">
+          {number}
+        </div>
+        <div className="text-sm leading-7 text-[#554d45] dark:text-[#d5cdc1]">
+          <p className="font-semibold tracking-[-0.02em] text-[#1d1a17] dark:text-[#f4efe5]">
+            {title}
+          </p>
+          <p className="mt-2">{description}</p>
+        </div>
+      </div>
+      <div className="mt-6 rounded-[1.25rem] border border-black/8 bg-[rgba(255,244,214,0.75)] px-4 py-3 text-sm text-[#5d554c] dark:border-white/10 dark:bg-[rgba(241,202,87,0.10)] dark:text-[#d7cec2]">
+        Follow the arrow buttons below to move to the next step.
+      </div>
+    </div>
   );
 }
 
