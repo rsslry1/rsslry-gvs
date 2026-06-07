@@ -9,7 +9,7 @@ import {
   verifyGrades,
 } from "./utils";
 import { Settings, SourceRow, VerificationRow } from "./types";
-import logo from "../rsslry-logo.png";
+import logo from "./asset/rsslry-logo.png";
 
 type SortKey = "studentName" | "computedGrade" | "difference" | "status";
 type FilterMode = "all" | "correct" | "acceptable" | "incorrect";
