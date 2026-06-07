@@ -185,22 +185,22 @@ function App() {
     <div className={settings.darkMode ? "dark" : ""}>
       <div className="min-h-screen bg-[#f4f0e8] text-[#181716] transition-colors dark:bg-[#18181b] dark:text-[#f4efe5]">
         <div className="min-h-screen bg-[radial-gradient(circle_at_top_right,_rgba(249,214,92,0.28),_transparent_26%),radial-gradient(circle_at_top_left,_rgba(255,255,255,0.66),_transparent_34%),linear-gradient(180deg,_rgba(255,255,255,0.28),_transparent_55%)] dark:bg-[radial-gradient(circle_at_top_right,_rgba(249,214,92,0.12),_transparent_22%),linear-gradient(180deg,_rgba(255,255,255,0.04),_transparent_60%)]">
-          <main className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-6 sm:px-6 lg:px-8">
-            <header className="glass-panel grid gap-5 rounded-[2.25rem] p-6 md:grid-cols-[1.35fr_0.85fr]">
+          <main className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-3 py-4 sm:gap-8 sm:px-6 sm:py-6 lg:px-8">
+            <header className="glass-panel grid gap-5 rounded-[2rem] p-4 sm:rounded-[2.25rem] sm:p-6 md:grid-cols-[1.35fr_0.85fr]">
               <div>
                
-                <div className="mt-5 flex items-center gap-4">
+                <div className="mt-3 flex flex-col items-start gap-3 sm:mt-5 sm:flex-row sm:items-center sm:gap-4">
                   <img
                     src={logo}
                     alt="RSSLRY"
                     className="h-12 w-auto object-contain sm:h-14"
                   />
-                  <div className="h-10 w-px bg-black/10 dark:bg-white/10" />
+                  <div className="hidden h-10 w-px bg-black/10 sm:block dark:bg-white/10" />
                   <p className="text-xs uppercase tracking-[0.24em] text-[#8c7234] dark:text-[#e2c56e]">
                     Grade Verification System
                   </p>
                 </div>
-                <h1 className="mt-5 font-display text-4xl leading-tight tracking-[-0.04em] sm:text-5xl lg:text-6xl">
+                <h1 className="mt-5 font-display text-3xl leading-tight tracking-[-0.04em] sm:text-5xl lg:text-6xl">
                   Verify academic grades.
                 </h1>
                 <p className="mt-4 max-w-2xl text-sm leading-7 text-[#625a51] dark:text-[#c9c1b6]">
@@ -225,8 +225,8 @@ function App() {
                   </button>
                 </div>
               </div>
-              <div className="rounded-[2rem] border border-black/8 bg-[linear-gradient(135deg,_rgba(255,244,214,0.95),_rgba(255,255,255,0.55))] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:border-white/10 dark:bg-[linear-gradient(135deg,_rgba(51,48,44,0.95),_rgba(28,28,31,0.88))]">
-                <div className="flex items-start justify-between gap-4">
+              <div className="rounded-[2rem] border border-black/8 bg-[linear-gradient(135deg,_rgba(255,244,214,0.95),_rgba(255,255,255,0.55))] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] sm:p-5 dark:border-white/10 dark:bg-[linear-gradient(135deg,_rgba(51,48,44,0.95),_rgba(28,28,31,0.88))]">
+                <div className="flex flex-col items-start justify-between gap-4 sm:flex-row">
                   <div>
                     <p className="text-sm text-[#73695d] dark:text-[#d0c7ba]">Session profile</p>
                     <p className="mt-2 text-2xl font-semibold tracking-[-0.03em]">
@@ -259,8 +259,8 @@ function App() {
             </header>
 
             <section className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
-              <article className="glass-panel rounded-[2.15rem] p-6">
-                <div className="flex items-center justify-between gap-4">
+              <article className="glass-panel rounded-[2rem] p-4 sm:rounded-[2.15rem] sm:p-6">
+                <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center sm:gap-4">
                   <div>
                     <p className="section-label">Upload Page</p>
                     <h2 className="section-title">Import academic records</h2>
@@ -277,7 +277,7 @@ function App() {
                   }}
                   onDragLeave={() => setDragActive(false)}
                   onDrop={onDrop}
-                  className={`mt-5 flex min-h-64 cursor-pointer flex-col items-center justify-center rounded-[1.9rem] border px-6 py-10 text-center transition ${
+                  className={`mt-5 flex min-h-[15rem] cursor-pointer flex-col items-center justify-center rounded-[1.9rem] border px-4 py-8 text-center sm:min-h-64 sm:px-6 sm:py-10 transition ${
                     dragActive
                       ? "border-[#f1ca57] bg-[rgba(255,245,214,0.9)] dark:bg-[rgba(241,202,87,0.08)]"
                       : "border-black/10 bg-white/48 dark:border-white/10 dark:bg-white/5"
@@ -317,14 +317,30 @@ function App() {
                 ) : null}
 
                 <div className="mt-5 overflow-hidden rounded-[1.7rem] border border-black/8 bg-white/55 dark:border-white/10 dark:bg-white/5">
-                  <div className="flex items-center justify-between border-b border-black/8 bg-white/45 px-4 py-3 dark:border-white/10 dark:bg-white/5">
+                  <div className="flex flex-col items-start justify-between gap-2 border-b border-black/8 bg-white/45 px-4 py-3 sm:flex-row sm:items-center dark:border-white/10 dark:bg-white/5">
                     <h3 className="font-semibold tracking-[-0.02em]">Data preview</h3>
                     <p className="text-sm text-[#776f65] dark:text-[#bbb3a7]">
                       {sourceRows.length} records
                     </p>
                   </div>
-                  <div className="max-h-80 overflow-auto">
-                    <table className="min-w-full text-sm">
+                  <div className="sm:hidden">
+                    {sourceRows.length === 0 ? (
+                      <div className="px-4 py-8 text-center text-sm text-[#7d7468] dark:text-[#afa79a]">
+                        Your spreadsheet preview will appear here after upload.
+                      </div>
+                    ) : (
+                      <div className="max-h-80 space-y-3 overflow-auto p-3">
+                        {sourceRows.slice(0, 8).map((row) => (
+                          <PreviewCard
+                            key={`${row["No."]}-${row["Last Name"]}`}
+                            row={row}
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  <div className="hidden max-h-80 overflow-auto sm:block">
+                    <table className="min-w-[42rem] text-sm sm:min-w-full">
                       <thead className="sticky top-0 bg-[#f7f2ea]/90 backdrop-blur dark:bg-[#1f1f22]/90">
                         <tr className="text-left">
                           {[
@@ -376,8 +392,8 @@ function App() {
                 </div>
               </article>
 
-              <article className="glass-panel rounded-[2.15rem] p-6">
-                <div className="flex items-start justify-between gap-4">
+              <article className="glass-panel rounded-[2rem] p-4 sm:rounded-[2.15rem] sm:p-6">
+                <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:gap-4">
                   <div>
                     <p className="section-label">Formula Configuration</p>
                     <h2 className="section-title">Set the verification rule</h2>
@@ -535,13 +551,13 @@ function App() {
               </article>
             </section>
 
-            <section className="glass-panel rounded-[2.15rem] p-6">
+            <section className="glass-panel rounded-[2rem] p-4 sm:rounded-[2.15rem] sm:p-6">
               <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                 <div>
                   <p className="section-label">Results Page</p>
                   <h2 className="section-title">Verification summary and results</h2>
                 </div>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                   <ActionButton
                     disabled={verificationRows.length === 0}
                     onClick={() =>
@@ -611,7 +627,7 @@ function App() {
                 <select
                   value={filter}
                   onChange={(event) => setFilter(event.target.value as FilterMode)}
-                  className="rounded-[1.25rem] border border-black/8 bg-white/52 px-4 py-3 outline-none focus:border-[#f1ca57] dark:border-white/10 dark:bg-white/5"
+                  className="w-full rounded-[1.25rem] border border-black/8 bg-white/52 px-4 py-3 outline-none focus:border-[#f1ca57] lg:w-auto dark:border-white/10 dark:bg-white/5"
                 >
                   <option value="all">All Statuses</option>
                   <option value="correct">Correct</option>
@@ -621,8 +637,24 @@ function App() {
               </div>
 
               <div className="mt-5 overflow-hidden rounded-[1.7rem] border border-black/8 bg-white/50 dark:border-white/10 dark:bg-white/5">
-                <div className="max-h-[34rem] overflow-auto">
-                  <table className="min-w-full text-sm">
+                <div className="sm:hidden">
+                  {filteredRows.length === 0 ? (
+                    <div className="px-4 py-8 text-center text-sm text-[#7d7468] dark:text-[#afa79a]">
+                      Run verification to populate the results table.
+                    </div>
+                  ) : (
+                    <div className="max-h-[34rem] space-y-3 overflow-auto p-3">
+                      {filteredRows.map((row) => (
+                        <ResultCard
+                          key={`${row["No."]}-${row.studentName}`}
+                          row={row}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <div className="hidden max-h-[34rem] overflow-auto sm:block">
+                  <table className="min-w-[42rem] text-sm sm:min-w-full">
                     <thead className="sticky top-0 bg-[#f7f2ea]/92 backdrop-blur dark:bg-[#1f1f22]/92">
                       <tr className="text-left">
                         <th className="px-4 py-3">Student</th>
@@ -654,17 +686,7 @@ function App() {
                           <td className="px-4 py-3">{row["Final Grade"]}</td>
                           <td className="px-4 py-3">{row.difference}</td>
                           <td className="px-4 py-3">
-                            <span
-                              className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                                row.status === "Incorrect"
-                                  ? "bg-[#f9ddd8] text-[#8a3b2e] dark:bg-[#482420] dark:text-[#f5beb6]"
-                                  : row.status === "Acceptable"
-                                    ? "bg-[#f8ebb9] text-[#8c6d14] dark:bg-[#4a3b16] dark:text-[#f2d87c]"
-                                    : "bg-[#dfefe4] text-[#28574b] dark:bg-[#1f3a31] dark:text-[#a8d6c4]"
-                              }`}
-                            >
-                              {row.status}
-                            </span>
+                            <StatusBadge status={row.status} />
                           </td>
                         </tr>
                       ))}
@@ -688,9 +710,9 @@ function App() {
       </div>
 
       {isHelpOpen ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/35 px-4 backdrop-blur-sm">
-          <div className="glass-panel w-full max-w-3xl rounded-[2rem] p-6 sm:p-7">
-            <div className="flex items-start justify-between gap-4">
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/35 px-3 py-3 backdrop-blur-sm sm:items-center sm:px-4">
+          <div className="glass-panel max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-[2rem] p-4 sm:p-7">
+            <div className="flex flex-col items-start justify-between gap-4 sm:flex-row">
               <div>
                 <p className="section-label">Help Guide</p>
                 <h2 className="section-title">How to use the system</h2>
@@ -722,18 +744,18 @@ function App() {
                 </div>
               </div>
 
-              <div className="mt-5 flex items-center justify-between gap-4">
+              <div className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <button
                   type="button"
                   onClick={() => setHelpStepIndex((current) => Math.max(0, current - 1))}
                   disabled={helpStepIndex === 0}
-                  className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 text-sm text-[#2a2927] transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-40 dark:border-white/10 dark:bg-white/10 dark:text-[#f3ede4] dark:hover:bg-white/15"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 text-sm text-[#2a2927] transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto dark:border-white/10 dark:bg-white/10 dark:text-[#f3ede4] dark:hover:bg-white/15"
                 >
                   <span aria-hidden="true">←</span>
                   Previous
                 </button>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center justify-center gap-2">
                   {helpSteps.map((step, index) => (
                     <button
                       key={step.title}
@@ -755,7 +777,7 @@ function App() {
                     setHelpStepIndex((current) => Math.min(helpSteps.length - 1, current + 1))
                   }
                   disabled={helpStepIndex === helpSteps.length - 1}
-                  className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 text-sm text-[#2a2927] transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-40 dark:border-white/10 dark:bg-white/10 dark:text-[#f3ede4] dark:hover:bg-white/15"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 text-sm text-[#2a2927] transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto dark:border-white/10 dark:bg-white/10 dark:text-[#f3ede4] dark:hover:bg-white/15"
                 >
                   Next
                   <span aria-hidden="true">→</span>
@@ -781,6 +803,88 @@ function HeroMetric({ label, value }: { label: string; value: number | string })
       </p>
       <p className="mt-2 text-3xl font-semibold tracking-[-0.04em]">{value}</p>
     </div>
+  );
+}
+
+function PreviewCard({ row }: { row: SourceRow }) {
+  return (
+    <div className="rounded-[1.35rem] border border-black/8 bg-white/55 p-4 dark:border-white/10 dark:bg-white/5">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="font-semibold tracking-[-0.02em] text-[#1d1a17] dark:text-[#f4efe5]">
+            {row["Last Name"]}, {row["First Name"]}
+          </p>
+          <p className="mt-1 text-xs uppercase tracking-[0.16em] text-[#7d7468] dark:text-[#afa79a]">
+            No. {row["No."]}
+          </p>
+        </div>
+        <div className="rounded-full bg-[rgba(255,244,214,0.82)] px-3 py-1 text-xs font-semibold text-[#5d554c] dark:bg-[rgba(241,202,87,0.12)] dark:text-[#d7cec2]">
+          Final {row["Final Grade"]}
+        </div>
+      </div>
+      <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
+        <MobileField label="Prelim" value={row.Prelim} />
+        <MobileField label="Midterm" value={row.Midterm} />
+        <MobileField label="Final Term" value={row["Final Term"]} />
+        <MobileField label="Final Grade" value={row["Final Grade"]} />
+      </div>
+    </div>
+  );
+}
+
+function ResultCard({ row }: { row: VerificationRow }) {
+  const cardTone =
+    row.status === "Incorrect"
+      ? "border-[#f1c7c2] bg-[#fff4f2]/80 dark:border-[#5f2d28] dark:bg-[#2a1918]"
+      : row.status === "Acceptable"
+        ? "border-[#efdca0] bg-[#fff7de]/80 dark:border-[#68561f] dark:bg-[#2a2617]"
+        : "border-[#d6e7db] bg-[#f3faf4]/80 dark:border-[#29473c] dark:bg-[#18231f]";
+
+  return (
+    <div className={`rounded-[1.35rem] border p-4 ${cardTone}`}>
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="font-semibold tracking-[-0.02em]">{row.studentName}</p>
+          <p className="mt-1 text-xs uppercase tracking-[0.16em] text-[#7d7468] dark:text-[#afa79a]">
+            No. {row["No."]}
+          </p>
+        </div>
+        <StatusBadge status={row.status} />
+      </div>
+      <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
+        <MobileField label="Computed" value={row.computedGrade} />
+        <MobileField label="Recorded" value={row["Final Grade"]} />
+        <MobileField label="Difference" value={row.difference} />
+        <MobileField label="Status" value={row.status} />
+      </div>
+    </div>
+  );
+}
+
+function MobileField({ label, value }: { label: string; value: number | string }) {
+  return (
+    <div className="rounded-[1rem] bg-black/[0.03] px-3 py-2 dark:bg-white/[0.04]">
+      <p className="text-[11px] uppercase tracking-[0.16em] text-[#7d7468] dark:text-[#afa79a]">
+        {label}
+      </p>
+      <p className="mt-1 font-medium text-[#1d1a17] dark:text-[#f4efe5]">{value}</p>
+    </div>
+  );
+}
+
+function StatusBadge({ status }: { status: VerificationRow["status"] }) {
+  return (
+    <span
+      className={`rounded-full px-3 py-1 text-xs font-semibold ${
+        status === "Incorrect"
+          ? "bg-[#f9ddd8] text-[#8a3b2e] dark:bg-[#482420] dark:text-[#f5beb6]"
+          : status === "Acceptable"
+            ? "bg-[#f8ebb9] text-[#8c6d14] dark:bg-[#4a3b16] dark:text-[#f2d87c]"
+            : "bg-[#dfefe4] text-[#28574b] dark:bg-[#1f3a31] dark:text-[#a8d6c4]"
+      }`}
+    >
+      {status}
+    </span>
   );
 }
 
@@ -822,7 +926,7 @@ function ActionButton({
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className="rounded-full border border-black/8 bg-white/58 px-5 py-3 text-sm text-[#38342f] transition enabled:hover:bg-white disabled:cursor-not-allowed disabled:opacity-40 dark:border-white/10 dark:bg-white/6 dark:text-[#ece6dc] dark:enabled:hover:bg-white/10"
+      className="w-full rounded-full border border-black/8 bg-white/58 px-5 py-3 text-sm text-[#38342f] transition enabled:hover:bg-white sm:w-auto disabled:cursor-not-allowed disabled:opacity-40 dark:border-white/10 dark:bg-white/6 dark:text-[#ece6dc] dark:enabled:hover:bg-white/10"
     >
       {children}
     </button>
@@ -853,8 +957,8 @@ function HelpStep({
   description: string;
 }) {
   return (
-    <div className="flex min-h-[240px] flex-col justify-between rounded-[1.5rem] border border-black/8 bg-white/40 p-5 dark:border-white/10 dark:bg-white/5">
-      <div className="flex gap-4">
+    <div className="flex min-h-[220px] flex-col justify-between rounded-[1.5rem] border border-black/8 bg-white/40 p-4 sm:min-h-[240px] sm:p-5 dark:border-white/10 dark:bg-white/5">
+      <div className="flex gap-3 sm:gap-4">
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#2d2a29] text-sm font-semibold text-white dark:bg-[#f1ca57] dark:text-[#171614]">
           {number}
         </div>
